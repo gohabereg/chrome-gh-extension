@@ -20,16 +20,19 @@ module.exports = {
 
   resolve: {
     modules: [path.join(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts', '.tsx']
   },
 
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: [
           {
-            loader: 'ts-loader'
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'awesome-typescript-loader'
           },
           {
             loader: 'tslint-loader'
@@ -39,13 +42,29 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1
-        }
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]_[local]_[hash:base64]',
+              sourceMap: true,
+              minimize: true
+            }
+          }
+        ]
       }
     ]
   },
+  //
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM'
+  // },
 
   plugins: [
     new HtmlWebpackPlugin({
