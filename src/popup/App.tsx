@@ -1,24 +1,21 @@
 import React, { Component } from 'react'
-import styles from './App.css'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import DashboardScreen from './screens/Dashboard'
+import LoginScreen from './screens/Login'
+
+const user = undefined
 
 class App extends Component {
   render () {
     return (
-      <div className={styles.App}>
-        <header className={styles['App-header']}>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className={styles['App-link']}
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div>
+          <Route path='/' exact component={DashboardScreen} />
+          <Route path='/login' component={LoginScreen} />
+
+          { !user ? <Redirect to='/login'/> : <Redirect to='/' />}
+        </div>
+      </Router>
     )
   }
 }
