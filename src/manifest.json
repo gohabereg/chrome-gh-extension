@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GitHub Activity",
-  "version": "0.0.0",
+  "version": "0.0.2",
 
   "description": "Extension to manage your GitHub activities",
   "icons": {
@@ -28,7 +28,9 @@
   },
   "author": "Georgy Berezhnoy <gohabereg@gmail.com>",
   "permissions": [
-    "https://github.com",
-    "https://api.github.com"
-  ]
+    "identity",
+    "https://api.github.com/*"
+  ],
+
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyU9eePoTJVc9Zi0MrxYQGnR806ayki62gSYG4xw6wcFwFWXVNNtYWcQSrKSwe6J/j/Pn9ljdkPXg0ia7tAHqDcP9UIWDA4SmRopZ6n0fv0yxyoybazsmAx6PRrKa3L9dLnuRSYJ5wLaEJuc5HEcMsXnJI2Ee7czAUAZiGhPm94hqwdNAIFzFl+yy3/S4Ji9TSpZjEZh64uXw18+SEMRAgVL0ZBcxuW0lXk1835GggYJSJz8nXpmAgzGL1f8mmYNmxaD5NVTEgMyf9LDExeheUY1j3aMKqs3cBWa+JOyYvS9VRgiDQnMBc9nPtTaP426yTcLrhuE7bp+/9IL/5UiOBQIDAQAB"
 }

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 const {NODE_ENV = 'development'} = process.env;
 
@@ -60,11 +61,6 @@ module.exports = {
       }
     ]
   },
-  //
-  // externals: {
-  //   react: 'React',
-  //   'react-dom': 'ReactDOM'
-  // },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -77,7 +73,12 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: './src/manifest.json'},
       {context: './src/assets', from: 'icon-**', to: 'assets'}
-    ])
+    ]),
+
+    new DotenvPlugin({
+      sample: './.env.sample',
+      path: './.env'
+    })
   ],
 
   optimization: {

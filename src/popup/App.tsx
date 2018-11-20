@@ -13,7 +13,7 @@ class App extends Component {
           <Route path='/' exact component={DashboardScreen} />
           <Route path='/login' component={LoginScreen} />
 
-          { !user ? <Redirect to='/login'/> : <Redirect to='/' />}
+          <Redirect to={!user ? '/login' : '/'} />
         </div>
       </Router>
     )

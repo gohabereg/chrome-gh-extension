@@ -65,3 +65,9 @@ typings/
 
 # dist fodler
 dist/
+
+# packed extension
+extension.zip
+
+# .env
+.env

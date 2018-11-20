@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import Auth from '../../auth'
 
 export default class LoginScreen extends Component {
+  onPressLogin = () => {
+    const auth = new Auth()
+    console.log(auth)
+  }
+
   render () {
     return (
-      <div>Login</div>
+      <button onClick={this.onPressLogin}>Login</button>
     )
   }
 }
