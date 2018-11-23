@@ -2,10 +2,21 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import DashboardScreen from './screens/Dashboard'
 import LoginScreen from './screens/Login'
-
-const user = undefined
+import feathersClient from './FeathersClient'
 
 class App extends Component {
+  state = {
+    user: feathersClient.user
+  }
+
+  componentDidMount () {
+    feathersClient.authenticate()
+
+    feathersClient.on('user', user => {
+      this.setState({ user })
+    })
+  }
+
   render () {
     return (
       <Router>
@@ -13,7 +24,7 @@ class App extends Component {
           <Route path='/' exact component={DashboardScreen} />
           <Route path='/login' component={LoginScreen} />
 
-          { !user ? <Redirect to='/login'/> : <Redirect to='/' />}
+          <Redirect to={this.state.user ? '/' : '/login'} />
         </div>
       </Router>
     )

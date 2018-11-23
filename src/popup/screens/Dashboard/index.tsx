@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class DashboardScreen extends Component {
-  redner () {
+  render () {
     return (
       <div>Dashboard</div>
     )

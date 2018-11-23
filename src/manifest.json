@@ -28,7 +28,7 @@
   },
   "author": "Georgy Berezhnoy <gohabereg@gmail.com>",
   "permissions": [
-    "https://github.com",
-    "https://api.github.com"
+    "identity",
+    "http://localhost:3030"
   ]
 }
