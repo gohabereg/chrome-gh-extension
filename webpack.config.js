@@ -51,10 +51,18 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
+              localIdentName: '[folder]-[name]__[local]',
               sourceMap: true,
               minimize: true
             }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'react-svg-loader'
           }
         ]
       }
