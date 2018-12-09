@@ -4,7 +4,8 @@ import styles from './index.css'
 
 interface ButtonProps {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void
-  primary: boolean
+  primary: boolean,
+  className: string
 }
 
 export default class Button extends Component<ButtonProps> {
@@ -13,14 +14,17 @@ export default class Button extends Component<ButtonProps> {
   }
 
   render () {
+    const { children, className, onClick, primary } = this.props
+
     return (
       <button
         className={classnames(styles.button, {
-          [styles.primary]: this.props.primary
+          [styles.primary]: primary,
+          [className]: className
         })}
-        onClick={this.props.onClick}
+        onClick={onClick}
       >
-        {this.props.children}
+        {children}
       </button>
     )
   }

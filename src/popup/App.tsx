@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import DashboardScreen from './screens/Dashboard'
 import LoginScreen from './screens/Login'
 import feathersClient from './FeathersClient'
+import styles from './App.css'
 
 class App extends Component {
   state = {
@@ -20,12 +21,12 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <div>
+        <main className={styles.app}>
           <Route path='/' exact component={DashboardScreen} />
           <Route path='/login' component={LoginScreen} />
 
           <Redirect to={this.state.user ? '/' : '/login'} />
-        </div>
+        </main>
       </Router>
     )
   }
