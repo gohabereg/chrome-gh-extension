@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import feathersClient from '../../FeathersClient'
+import Button from '../../components/Button'
+import GitHubLogo from '../../components/GitHubLogo'
 
 export default class LoginScreen extends Component {
   onPressLogin = () => {
@@ -18,7 +20,10 @@ export default class LoginScreen extends Component {
 
   render () {
     return (
-      <button onClick={this.onPressLogin}>Login</button>
+      <div>
+        <GitHubLogo />
+        <Button onClick={this.onPressLogin} primary>Login</Button>
+      </div>
     )
   }
 }
