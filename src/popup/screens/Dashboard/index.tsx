@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import styles from './index.css'
 import Tab from '../../components/Tab'
-import Icon from '../../components/Icon';
+import RightMenu from '../../components/RightMenu';
 
 export default class DashboardScreen extends Component {
   state = {
@@ -21,7 +21,7 @@ export default class DashboardScreen extends Component {
         {this.state.tabs.map((title: string, i: number) => {
           return <Tab key={i} onClick={() => this.onTabPress(i)} selected={i === this.state.currentTab}>{title}</Tab>
         })}
-        <Icon/>
+        <RightMenu/>
         </div>
       <div>
       </div>

@@ -1,0 +1,41 @@
+.popup {
+  display: none;
+  position: absolute;
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid rgba(27,31,35,.15);
+  box-shadow: 0 3px 12px rgba(27,31,35,.15);
+  border-radius: 4px;
+  list-style: none;
+  margin-top: 2px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  z-index: 100;
+}
+
+.popup::before,
+.popup::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: auto;
+}
+
+.popup::before {
+  right: 18px;
+  top: -16.5px;
+  border: 8px solid transparent;
+  border-bottom-color: rgba(27,31,35,.15);
+}
+
+.popup::after {
+  right: 19px;
+  top: -14px;
+  border: 7px solid transparent;
+  border-bottom-color: #fff;
+}
+
+.popupOpened {
+  display: flex;
+}
+

@@ -15,8 +15,6 @@ class App extends Component {
 
   updateUser = (user) => {
     if (user !== null) {
-      const { user: oldUser } = store.getState()
-
       store.dispatch(setUser(user))
     } else {
       store.dispatch(clearUser())
