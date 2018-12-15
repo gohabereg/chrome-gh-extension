@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import styles from './index.css'
 import Tab from '../../components/Tab'
+import Icon from '../../components/Icon';
 
 export default class DashboardScreen extends Component {
   state = {
@@ -8,7 +9,7 @@ export default class DashboardScreen extends Component {
     currentTab: 0
   }
 
-  onTabPress (i: number = 0) {
+  onTabPress(i: number = 0) {
     this.setState({
       currentTab: i
     })
@@ -20,11 +21,9 @@ export default class DashboardScreen extends Component {
         {this.state.tabs.map((title: string, i: number) => {
           return <Tab key={i} onClick={() => this.onTabPress(i)} selected={i === this.state.currentTab}>{title}</Tab>
         })}
-
-      </div>
-
+        <Icon/>
+        </div>
       <div>
-
       </div>
     </div>
   }
