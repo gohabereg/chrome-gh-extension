@@ -49,9 +49,9 @@ export class RightMenu extends Component<RightMenuProps> {
             <li className={styles.listItem}>
               <a href={user ? user.profileUrl : ''} target='_blank'>
               <p className={styles.p}> Signed in as</p>
-              <strong>
+              <b>
                 <p className={styles.p}>{user ? user.username : ''}</p>
-              </strong>
+              </b>
               </a>
             </li>
             <li className={styles.dropdownDivider}> </li>

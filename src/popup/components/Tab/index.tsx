@@ -17,9 +17,9 @@ export default class Tab extends Component<TabProps> {
           [styles.selected]: selected
         })}
         onClick={onClick}
-        >
+      >
         {children}
-        </button>
+      </button>
     )
   }
 }

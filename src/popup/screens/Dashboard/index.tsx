@@ -22,19 +22,21 @@ export class DashboardScreen extends Component<DashboardProps> {
   }
 
   render () {
-    return <div className={styles.container}>
-      <div className={styles.header}>
-        {this.state.tabs.map((title: string, i: number) => {
-          return <Tab key={i} onClick={() => this.onTabPress(i)} selected={i === this.state.currentTab}>{title}</Tab>
-        })}
-        <RightMenu/>
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          {this.state.tabs.map((title: string, i: number) => {
+            return <Tab key={i} onClick={() => this.onTabPress(i)} selected={i === this.state.currentTab}>{title}</Tab>
+          })}
+          <RightMenu/>
         </div>
-      <div>
-        {this.props.notifications.map((notification, i) => {
-          return <Notification key={i} data={notification}/>
-        })}
+        <div>
+          {this.props.notifications.map((notification, i) => {
+            return <Notification key={i} data={notification}/>
+          })}
+        </div>
       </div>
-    </div>
+    )
   }
 }
 

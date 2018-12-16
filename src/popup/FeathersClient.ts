@@ -23,7 +23,7 @@ export class FeathersClient extends EventEmitter {
   }
 
   bindEvents (): void {
-    this.app.service('user').on('update', this.updateUser)
+    this.app.service('user').on('updated', this.updateUser)
   }
 
   public async logout (): Promise<void> {
