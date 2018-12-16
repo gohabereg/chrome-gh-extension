@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import feathersClient from '../../FeathersClient'
 import styles from './index.css'
 import Popup from '../Popup'
@@ -13,7 +13,6 @@ interface RightMenuProps {
   width?: number
   height?: number
 }
-
 
 export class RightMenu extends Component<RightMenuProps> {
   static defaultProps = {

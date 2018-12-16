@@ -1,0 +1,26 @@
+.avatar {
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.notification {
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.message {
+  font-size: 10px;
+}
+
+.link {
+  color: #00f;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
