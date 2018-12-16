@@ -1,5 +1,6 @@
-import React, {Component, MouseEvent} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import feathersClient from '../../FeathersClient'
 import styles from './index.css'
 import Popup from '../Popup'
 
@@ -28,6 +29,10 @@ export class RightMenu extends Component<RightMenuProps> {
     this.setState({ opened: !this.state.opened })
   }
 
+  onLogout = () => {
+    feathersClient.logout()
+  }
+
   render () {
     const { user, width, height } = this.props
 
@@ -52,7 +57,7 @@ export class RightMenu extends Component<RightMenuProps> {
             </li>
             <li className={styles.dropdownDivider}> </li>
             <li className={styles.listItem}>Settings</li>
-            <li className={styles.listItem}>Log out</li>
+            <li className={styles.listItem} onClick={this.onLogout}>Sign out</li>
           </ul>
         </Popup>
       </div>
