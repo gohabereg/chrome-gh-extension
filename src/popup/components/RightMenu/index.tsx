@@ -1,11 +1,13 @@
 import React, {Component, MouseEvent} from 'react'
 import {connect} from 'react-redux'
 import styles from './index.css'
-import Popup from "../Popup";
+import Popup from '../Popup'
 
 interface RightMenuProps {
   user?: {
     photo: string
+    username: string
+    profileUrl: string
   }
   width?: number
   height?: number
@@ -39,7 +41,19 @@ export class RightMenu extends Component<RightMenuProps> {
           <span className={styles.dropdown} />
         </button>
         <Popup opened={this.state.opened} className={styles.popup} >
-
+          <ul className={styles.list}>
+            <li className={styles.listItem}>
+              <a href={user ? user.profileUrl : ''} target='_blank'>
+              <p className={styles.p}> Signed in as</p>
+              <strong>
+                <p className={styles.p}>{user ? user.username : ''}</p>
+              </strong>
+              </a>
+            </li>
+            <li className={styles.dropdownDivider}> </li>
+            <li className={styles.listItem}>Settings</li>
+            <li className={styles.listItem}>Log out</li>
+          </ul>
         </Popup>
       </div>
     )
