@@ -1,0 +1,19 @@
+.tab {
+  background-color: #24292e;
+  color: white;
+  font-size: 10px;
+  border: none;
+  border-bottom: 3px transparent solid;
+  padding: 15px 0 7px;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.tab:not(:first-child) {
+  margin-left: 10px;
+}
+
+.selected {
+  border-bottom-color: #e36209;
+}

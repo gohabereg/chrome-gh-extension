@@ -23,10 +23,12 @@ export class FeathersClient extends EventEmitter {
   }
 
   bindEvents (): void {
-    this.app.service('user').on('update', (user) => {
-      this.user = user
-      this.emit('user', this.user)
-    })
+    this.app.service('user').on('updated', this.updateUser)
+  }
+
+  public async logout (): Promise<void> {
+    await this.app.logout()
+    this.updateUser(null)
   }
 
   public async authenticate (options?): Promise<void> {
@@ -41,6 +43,11 @@ export class FeathersClient extends EventEmitter {
       this.user = null
       console.log(e)
     }
+  }
+
+  private updateUser = (user) => {
+    this.user = user
+    this.emit('user', this.user)
   }
 }
 
