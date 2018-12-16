@@ -22,7 +22,7 @@ interface NotificationProps {
 export default class Notification extends Component<NotificationProps> {
   stylizeString (message, params) {
     if (params.url) {
-      message = `<a class="${styles.link}" href="${params.url}">${message}</a>`
+      message = `<a class="${styles.link}" href="${params.url}" target="_blank">${message}</a>`
     }
 
     if (params.mono) {

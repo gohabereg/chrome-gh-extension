@@ -7,6 +7,8 @@ import feathersClient from './FeathersClient'
 import styles from './App.css'
 import store from './redux/store'
 import { set as setUser, clear as clearUser } from './redux/reducers/user'
+import { add as addNotification } from './redux/reducers/notifications'
+import { load as loadNotifications } from './redux/thunks/notifications'
 
 class App extends Component {
   state = {
@@ -16,6 +18,7 @@ class App extends Component {
   updateUser = (user) => {
     if (user !== null) {
       store.dispatch(setUser(user))
+      store.dispatch(loadNotifications() as any)
     } else {
       store.dispatch(clearUser())
     }
@@ -25,6 +28,10 @@ class App extends Component {
     feathersClient.authenticate()
 
     feathersClient.on('user', this.updateUser)
+    feathersClient.on('notification', (notification) => {
+      store.dispatch(addNotification(notification))
+    })
+
     store.subscribe(() => {
       const { user } = store.getState()
 

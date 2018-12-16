@@ -30,7 +30,7 @@ export class DashboardScreen extends Component<DashboardProps> {
           })}
           <RightMenu/>
         </div>
-        <div>
+        <div className={styles.notifications}>
           {this.props.notifications.map((notification, i) => {
             return <Notification key={i} data={notification}/>
           })}
@@ -41,20 +41,5 @@ export class DashboardScreen extends Component<DashboardProps> {
 }
 
 export default connect((state: any) => ({
-  notifications: state.notifications || [{
-    icon: 'https://avatars2.githubusercontent.com/u/28855787?v=4',
-    user: {
-      value: 'ElenaOstrikova',
-      url: 'https://github.com/ElenaOstrikova'
-    },
-    reviewer: {
-      value: 'gohabereg',
-      url: 'https://github.com/gohabereg'
-    },
-    pr: {
-      value: 'Dashboard screen',
-      url: 'https://github.com/gohabereg/chrome-gh-extension/pull/3'
-    },
-    message: '[user] requested [reviewer]`s review for the «[pr]» pull request'
-  }]
+  notifications: state.notifications || []
 }))(DashboardScreen)

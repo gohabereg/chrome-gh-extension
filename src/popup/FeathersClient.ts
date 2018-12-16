@@ -4,9 +4,9 @@ import EventEmitter from 'event-emitter-es6'
 
 export class FeathersClient extends EventEmitter {
   public user: any = null
+  public app: any
 
   private socket: SocketIOClient.Socket
-  private app: any
 
   constructor () {
     super()
@@ -24,6 +24,9 @@ export class FeathersClient extends EventEmitter {
 
   bindEvents (): void {
     this.app.service('user').on('updated', this.updateUser)
+    this.app.service('notifications').on('created', (notification) => {
+      this.emit('notification', notification)
+    })
   }
 
   public async logout (): Promise<void> {
