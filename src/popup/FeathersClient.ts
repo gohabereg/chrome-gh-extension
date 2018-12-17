@@ -11,7 +11,7 @@ export class FeathersClient extends EventEmitter {
   constructor () {
     super()
 
-    this.socket = io('http://localhost:3030')
+    this.socket = io(process.env.BACKEND_URL as string)
     this.app = feathers()
 
     this.app.configure(feathers.socketio(this.socket))

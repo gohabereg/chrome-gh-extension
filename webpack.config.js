@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvPlugin = require('dotenv-webpack');
 
 const {NODE_ENV = 'development'} = process.env;
 
@@ -85,7 +86,12 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: './src/manifest.json'},
       {context: './src/assets', from: 'icon-**', to: 'assets'}
-    ])
+    ]),
+
+    new DotenvPlugin({
+      path: `./.env.${NODE_ENV}`,
+      safe: true
+    })
   ],
 
   optimization: {
