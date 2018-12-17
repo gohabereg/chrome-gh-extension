@@ -20,30 +20,50 @@ interface NotificationProps {
 }
 
 export default class Notification extends Component<NotificationProps> {
+  getContrastColor (color) {
+    color = color[0] === '#' ? color.slice(1) : color
+
+    const brightness = (parseInt(color.slice(0, 2), 16) * 299 + parseInt(color.slice(2, 4), 16) * 587 + parseInt(color.slice(4, 6), 16) * 114) / 1000
+
+    return brightness > 125 ? '#000' : '#fff'
+  }
+
   stylizeString (message, params) {
+    const element = params.url ? 'a' : 'span'
+    const attributes: {[key: string]: string} = {}
+    const css: {[key: string]: string} = {}
+    const classNames: string[] = []
+
+    if (params.color) {
+      css.color = params.color
+    }
+
     if (params.url) {
-      message = `<a class="${styles.link}" href="${params.url}" target="_blank">${message}</a>`
-    }
-
-    if (params.mono) {
-      message = `<code class="${styles.mono}">${message}</code>`
-    }
-
-    if (params.italic) {
-      message = `<i class="${styles.italic}">${message}</i>`
-    }
-
-    if (params.bold) {
-      message = `<b class="${styles.bold}">${message}</b>`
+      attributes.href = params.url
+      attributes.target = '_blank'
+      classNames.push(styles.link)
     }
 
     if (params.background) {
-      message = `<span style="background: ${params.background};">${message}</span>`
+      css.color = this.getContrastColor(params.background)
+      css.background = params.background
+
+      classNames.push(styles.background)
     }
 
-    if (params.color) {
-      message = `<span style="color: ${params.color}">${message}</span>`
+    if (params.mono) {
+      classNames.push(styles.mono)
     }
+
+    if (params.italic) {
+      classNames.push(styles.italic)
+    }
+
+    if (params.bold) {
+      classNames.push(styles.bold)
+    }
+
+    message = `<${element} style="${Object.entries(css).reduce((s, [key, value]) => `${s}${key}:${value};`, '')}" class="${classNames.join(' ')}" ${Object.entries(attributes).reduce((s, [key, value]) => `${s} ${key}="{$value}"`, '')}>${message}</${element}>`
 
     return message
   }

@@ -3,10 +3,10 @@ import feathers from '@feathersjs/client'
 import EventEmitter from 'event-emitter-es6'
 
 export class FeathersClient extends EventEmitter {
-  public user: any = null
   public app: any
 
   private socket: SocketIOClient.Socket
+  private _user: any = null
 
   constructor () {
     super()
@@ -23,7 +23,8 @@ export class FeathersClient extends EventEmitter {
   }
 
   bindEvents (): void {
-    this.app.service('user').on('updated', this.updateUser)
+    this.app.service('users').on('updated', this.updateUser)
+    this.app.service('users').on('patched', this.updateUser)
     this.app.service('notifications').on('created', (notification) => {
       this.emit('notification', notification)
     })
@@ -40,17 +41,23 @@ export class FeathersClient extends EventEmitter {
       const JWTPayload = await this.app.passport.verifyJWT(response.accessToken)
 
       this.user = await this.app.service('users').get(JWTPayload.userId)
-
-      this.emit('user', this.user)
     } catch (e) {
       this.user = null
       console.log(e)
     }
   }
 
+  public get user () {
+    return this._user
+  }
+
+  public set user (user) {
+    this._user = user
+    this.emit('user', user)
+  }
+
   private updateUser = (user) => {
     this.user = user
-    this.emit('user', this.user)
   }
 }
 
