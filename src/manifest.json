@@ -29,6 +29,11 @@
   "author": "Georgy Berezhnoy <gohabereg@gmail.com>",
   "permissions": [
     "identity",
-    "http://localhost:3030"
+    "notifications",
+    "tabs",
+    "alarms",
+    "https://gh.berezhnoy.space/",
+    "http://localhost:3030/",
+    "https://*.githubusercontent.com/"
   ]
 }

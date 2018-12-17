@@ -6,7 +6,6 @@ export class FeathersClient extends EventEmitter {
   public app: any
 
   private socket: SocketIOClient.Socket
-  private _user: any = null
 
   constructor () {
     super()
@@ -23,8 +22,6 @@ export class FeathersClient extends EventEmitter {
   }
 
   bindEvents (): void {
-    this.app.service('users').on('updated', this.updateUser)
-    this.app.service('users').on('patched', this.updateUser)
     this.app.service('notifications').on('created', (notification) => {
       this.emit('notification', notification)
     })
@@ -32,34 +29,14 @@ export class FeathersClient extends EventEmitter {
 
   public async logout (): Promise<void> {
     await this.app.logout()
-    this.updateUser(null)
   }
 
   public async authenticate (options?): Promise<void> {
     try {
-      const response = await this.app.authenticate(options)
-      const JWTPayload = await this.app.passport.verifyJWT(response.accessToken)
-
-      this.user = await this.app.service('users').get(JWTPayload.userId)
-
-      chrome.runtime.sendMessage({ event: 'authentication' })
+      await this.app.authenticate(options)
     } catch (e) {
-      this.user = null
       console.log(e)
     }
-  }
-
-  public get user () {
-    return this._user
-  }
-
-  public set user (user) {
-    this._user = user
-    this.emit('user', user)
-  }
-
-  private updateUser = (user) => {
-    this.user = user
   }
 }
 
