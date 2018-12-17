@@ -63,7 +63,7 @@ export default class Notification extends Component<NotificationProps> {
       classNames.push(styles.bold)
     }
 
-    message = `<${element} style="${Object.entries(css).reduce((s, [key, value]) => `${s}${key}:${value};`, '')}" class="${classNames.join(' ')}" ${Object.entries(attributes).reduce((s, [key, value]) => `${s} ${key}="{$value}"`, '')}>${message}</${element}>`
+    message = `<${element} style="${Object.entries(css).reduce((s, [key, value]) => `${s}${key}:${value};`, '')}" class="${classNames.join(' ')}" ${Object.entries(attributes).reduce((s, [key, value]) => `${s} ${key}="${value}"`, '')}>${message}</${element}>`
 
     return message
   }

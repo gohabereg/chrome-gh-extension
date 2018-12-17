@@ -14,5 +14,41 @@
 }
 
 .notifications {
+  height: 100%;
   overflow-y: auto;
 }
+
+.cta,
+.emptyDashboard {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  fill: #acacac;
+  color: #acacac;
+  font-size: 15px;
+}
+
+.cta {
+  color: #000;
+}
+
+.ctaHint {
+  margin-bottom: 10px;
+}
+
+.ctaHint::after {
+  content: ' 😊';
+  position: absolute;
+  margin-left: 5px;
+}
+
+.emptyHint::after {
+  content: ' 🙈';
+  position: absolute;
+  margin-left: 5px;
+}
+
+

@@ -4,9 +4,14 @@ import Tab from '../../components/Tab'
 import RightMenu from '../../components/RightMenu'
 import Notification, { INotification } from '../../components/Notification'
 import { connect } from 'react-redux'
+import GitHubLogo from '../../components/GitHubLogo'
+import Button from '../../components/Button'
 
 interface DashboardProps {
-  notifications: INotification[]
+  notifications: INotification[],
+  user?: {
+    installation?: number
+  }
 }
 
 export class DashboardScreen extends Component<DashboardProps> {
@@ -21,7 +26,39 @@ export class DashboardScreen extends Component<DashboardProps> {
     })
   }
 
+  onCTAPress = () => {
+    window.open('https://github.com/apps/activity-notifications', '_blank')
+  }
+
+  renderInstallCTA () {
+    return (
+      <div className={styles.cta}>
+        <p className={styles.ctaHint}>I nstall our GitHub App to start receive notifications</p>
+        <Button onClick={this.onCTAPress} primary>Install</Button>
+      </div>
+    )
+  }
+
+  renderEmptyDashboard () {
+    return (
+      <div className={styles.emptyDashboard}>
+        <GitHubLogo width={80} height={80} />
+        <p className={styles.emptyHint}>No notifications yet</p>
+      </div>
+    )
+  }
+
+  renderNotifications () {
+    return this.props.notifications.map((notification, i) => {
+      return <Notification key={i} data={notification}/>
+    })
+  }
+
   render () {
+    const { user, notifications } = this.props
+
+    console.log(user)
+
     return (
       <div className={styles.container}>
         <div className={styles.header}>
@@ -31,9 +68,9 @@ export class DashboardScreen extends Component<DashboardProps> {
           <RightMenu/>
         </div>
         <div className={styles.notifications}>
-          {this.props.notifications.map((notification, i) => {
-            return <Notification key={i} data={notification}/>
-          })}
+          {user && !user.installation && this.renderInstallCTA()}
+          {user && user.installation && notifications.length !== 0 && this.renderNotifications()}
+          {user && user.installation && !notifications.length && this.renderEmptyDashboard()}
         </div>
       </div>
     )
@@ -41,5 +78,6 @@ export class DashboardScreen extends Component<DashboardProps> {
 }
 
 export default connect((state: any) => ({
-  notifications: state.notifications || []
+  notifications: state.notifications || [],
+  user: state.user
 }))(DashboardScreen)

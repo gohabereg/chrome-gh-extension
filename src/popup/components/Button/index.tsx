@@ -4,8 +4,8 @@ import styles from './index.css'
 
 interface ButtonProps {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void
-  primary: boolean,
-  className: string
+  primary?: boolean,
+  className?: string
 }
 
 export default class Button extends Component<ButtonProps> {
@@ -20,7 +20,7 @@ export default class Button extends Component<ButtonProps> {
       <button
         className={classnames(styles.button, {
           [styles.primary]: primary,
-          [className]: className
+          [className!]: className
         })}
         onClick={onClick}
       >
