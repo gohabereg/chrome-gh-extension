@@ -18,7 +18,10 @@ class App extends Component {
   updateUser = (user) => {
     if (user !== null) {
       store.dispatch(setUser(user))
-      store.dispatch(loadNotifications() as any)
+
+      if (user.installation) {
+        store.dispatch(loadNotifications() as any)
+      }
     } else {
       store.dispatch(clearUser())
     }

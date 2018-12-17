@@ -20,12 +20,22 @@ export class RightMenu extends Component<RightMenuProps> {
     height: 20
   }
 
+  container: HTMLDivElement | null = null
+
   state = {
     opened: false
   }
 
   onPressRightMenu = () => {
     this.setState({ opened: !this.state.opened })
+  }
+
+  onClickOutsidePopup = (target: HTMLElement) => {
+    if (this.container && this.container.contains(target)) {
+      return
+    }
+
+    this.onPressRightMenu()
   }
 
   onLogout = () => {
@@ -36,7 +46,7 @@ export class RightMenu extends Component<RightMenuProps> {
     const { user, width, height } = this.props
 
     return (
-      <div className={styles.container}>
+      <div ref={ref => this.container = ref} className={styles.container}>
         <button
           className={styles.button}
           onClick={this.onPressRightMenu}
@@ -44,7 +54,7 @@ export class RightMenu extends Component<RightMenuProps> {
           <img src={user ? user.photo : ''} width={width} height={height}/>
           <span className={styles.dropdown} />
         </button>
-        <Popup opened={this.state.opened} className={styles.popup} >
+        <Popup opened={this.state.opened} onOutsideClick={this.onClickOutsidePopup} className={styles.popup} >
           <ul className={styles.list}>
             <li className={styles.listItem}>
               <a href={user ? user.profileUrl : ''} target='_blank'>
