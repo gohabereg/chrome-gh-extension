@@ -5,7 +5,7 @@ export const load = (events?: string[]) => {
   return (async (dispatch) => {
     const query: any = {}
 
-    if (event) {
+    if (events) {
       query.event = {
         $in: events
       }

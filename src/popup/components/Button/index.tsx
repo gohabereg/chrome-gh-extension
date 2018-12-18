@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import styles from './index.css'
 
 interface ButtonProps {
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void
+  onClick: (event?: MouseEvent<HTMLButtonElement>) => void
   primary?: boolean,
   className?: string
 }
