@@ -60,7 +60,7 @@ export class DashboardScreen extends Component<DashboardProps> {
   renderInstallCTA () {
     return (
       <div className={styles.cta}>
-        <p className={styles.ctaHint}>I nstall our GitHub App to start receive notifications</p>
+        <p className={styles.ctaHint}>Install our GitHub App to start receive notifications</p>
         <Button onClick={this.onCTAPress} primary>Install</Button>
       </div>
     )
