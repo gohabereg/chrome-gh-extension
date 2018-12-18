@@ -33,6 +33,10 @@ export class DashboardScreen extends Component<DashboardProps> {
     ]
   }
 
+  componentWillMount () {
+    this.props.loadNotifications(this.state.tabs[0].events)
+  }
+
   onTabPress = (i: number = 0) => {
     this.props.loadNotifications(this.state.tabs[i].events)
   }
