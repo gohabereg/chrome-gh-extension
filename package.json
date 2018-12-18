@@ -6,8 +6,8 @@
   "author": "Georgy Berezhnoy <gohabereg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=production",
-    "build:dev": "webpack --mode=development --watch"
+    "build": "cross-env NODE_ENV=production webpack --mode=production",
+    "build:dev": "cross-env NODE_ENV=development webpack --mode=development --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -29,6 +29,7 @@
     "babel-loader": "^8.0.4",
     "classnames": "^2.2.6",
     "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "dotenv-webpack": "^1.5.7",
     "event-emitter-es6": "^1.1.5",

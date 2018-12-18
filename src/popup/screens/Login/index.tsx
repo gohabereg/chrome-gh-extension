@@ -33,10 +33,14 @@ export default class LoginScreen extends Component {
   onPressLogin = () => {
     this.setState({ loading: true })
 
-    chrome.identity.launchWebAuthFlow({
-      url: 'http://localhost:3030/auth/github',
-      interactive: true
-    }, this.onLogin)
+    try {
+      chrome.identity.launchWebAuthFlow({
+        url: `${process.env.BACKEND_URL}/auth/github`,
+        interactive: true
+      }, this.onLogin)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render () {

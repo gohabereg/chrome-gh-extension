@@ -17,7 +17,7 @@ module.exports = {
     libraryTarget: 'umd'
   },
 
-  devtool: NODE_ENV === 'development' ? 'source-map' : null,
+  devtool: NODE_ENV === 'development' ? 'source-map' : false,
 
   resolve: {
     modules: [path.join(__dirname, 'src'), 'node_modules'],

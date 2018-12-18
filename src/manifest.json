@@ -32,7 +32,8 @@
     "notifications",
     "tabs",
     "alarms",
-    "https://gh.berezhnoy.space/",
+    "https://gh-activity.berezhnoy.space/",
+    "https://github.com/",
     "http://localhost:3030/",
     "https://*.githubusercontent.com/"
   ]
