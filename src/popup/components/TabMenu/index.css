@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  align-items: center;
+}
+
+.plus {
+  fill: #fff;
+  margin-left: 10px;
+  margin-top: 1px;
+  cursor: pointer;
+}

@@ -41,14 +41,10 @@
 
 .ctaHint::after {
   content: ' 😊';
-  position: absolute;
-  margin-left: 5px;
 }
 
 .emptyHint::after {
   content: ' 🙈';
-  position: absolute;
-  margin-left: 5px;
 }
 
 
